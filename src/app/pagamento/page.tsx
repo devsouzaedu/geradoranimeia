@@ -109,16 +109,22 @@ export default function Pagamento() {
       const intervalo = setInterval(verificarPagamentoPix, 5000);
       return () => clearInterval(intervalo);
     }
-  }, [pixId, statusPagamento]);
+  }, [pixId, statusPagamento, verificarPagamentoPix, router]);
   
   return (
-    <div className="flex flex-col items-center min-h-screen p-8 bg-gradient-to-b from-blue-50 to-purple-50">
-      <header className="my-8">
+    <div className="relative min-h-screen flex flex-col items-center p-8">
+      {/* Background com imagem, overlay e blur */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/bg_anime.jpg')" }}></div>
+        <div className="absolute inset-0 backdrop-blur-md bg-white/70"></div>
+      </div>
+      
+      <header className="my-8 z-10 relative">
         <h1 className="text-4xl font-bold text-center text-purple-800">Finalizar Compra</h1>
         <p className="mt-2 text-center text-gray-600">Escolha como deseja pagar sua transformação</p>
       </header>
       
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
+      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg z-10 relative">
         <div className="flex justify-between mb-6 border-b pb-4">
           <button 
             className={`px-4 py-2 ${metodo === "pix" ? "text-purple-600 border-b-2 border-purple-600 font-medium" : "text-gray-500"}`}
@@ -285,7 +291,7 @@ export default function Pagamento() {
         )}
       </div>
       
-      <footer className="mt-8 text-center text-gray-500 text-sm">
+      <footer className="mt-8 text-center text-gray-500 text-sm z-10 relative">
         <p>© 2024 Gerador de Foto Anime - Todos os direitos reservados</p>
         <p className="mt-1">Pagamentos processados com segurança pela AbacatePay</p>
       </footer>

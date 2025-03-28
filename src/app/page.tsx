@@ -33,7 +33,16 @@ export default function Home() {
   };
   
   // Simular envio de email com os dados
-  const enviarEmail = (dados: any) => {
+  interface EmailData {
+    email: string;
+    whatsapp: string;
+    estilo: string;
+    nomeImagem: string;
+    tamanhoImagem: number;
+    dataHora: string;
+  }
+  
+  const enviarEmail = (dados: EmailData) => {
     console.log("Enviando email para dev.souzaedu@gmail.com com os dados:", dados);
     // Em um ambiente real, aqui haveria uma chamada para API de envio de email
   };
@@ -57,7 +66,7 @@ export default function Home() {
     }
     
     // Simular envio de email com as informações
-    const dadosEnvio = {
+    const dadosEnvio: EmailData = {
       email: email,
       whatsapp: whatsapp,
       estilo: estilo,
@@ -94,7 +103,14 @@ export default function Home() {
             <label className={`flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 border-gray-300 hover:bg-gray-100 ${imagemPreview ? 'border-purple-300 bg-purple-50' : ''}`}>
               {imagemPreview ? (
                 <div className="relative w-full h-full">
-                  <img src={imagemPreview} alt="Prévia da imagem" className="object-contain w-full h-full p-2" />
+                  <div className="w-full h-full p-2">
+                    <Image 
+                      src={imagemPreview} 
+                      alt="Prévia da imagem"
+                      fill
+                      style={{ objectFit: 'contain' }}
+                    />
+                  </div>
                   <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 hover:opacity-100 transition-opacity">
                     <p className="text-white font-medium">Clique para trocar</p>
                   </div>

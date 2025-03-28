@@ -1,14 +1,19 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 
 export default function Sucesso() {
   const router = useRouter();
   
   return (
-    <div className="flex flex-col items-center min-h-screen p-8 bg-gradient-to-b from-blue-50 to-purple-50">
-      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg my-12 text-center">
+    <div className="relative min-h-screen flex flex-col items-center p-8">
+      {/* Background com imagem, overlay e blur */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/bg_anime.jpg')" }}></div>
+        <div className="absolute inset-0 backdrop-blur-md bg-white/70"></div>
+      </div>
+      
+      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg my-12 text-center z-10 relative">
         <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
           <svg 
             className="w-10 h-10 text-green-600" 
@@ -51,7 +56,7 @@ export default function Sucesso() {
         </button>
       </div>
       
-      <footer className="mt-auto text-center text-gray-500 text-sm pb-8">
+      <footer className="mt-auto text-center text-gray-500 text-sm pb-8 z-10 relative">
         <p>© 2024 Gerador de Foto Anime - Todos os direitos reservados</p>
         <p className="mt-1">Pagamentos processados com segurança pela AbacatePay</p>
       </footer>

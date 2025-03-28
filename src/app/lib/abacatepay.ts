@@ -2,8 +2,10 @@
  * Módulo para integração com a API AbacatePay
  */
 
-const API_KEY = 'abc_dev_sMBJENHnAuDt6LcKSLxnP3CB';
-const BASE_URL = 'https://api.abacatepay.com/v1';
+// As variáveis abaixo estão comentadas para evitar erro de lint "não utilizada"
+// Em produção, descomentar e utilizar nos métodos reais
+// const API_KEY = 'abc_dev_sMBJENHnAuDt6LcKSLxnP3CB';
+// const BASE_URL = 'https://api.abacatepay.com/v1';
 
 interface CriarPixQRCodeParams {
   valor: number;
@@ -78,7 +80,7 @@ export async function criarPixQRCode(params: CriarPixQRCodeParams): Promise<PixQ
 /**
  * Verifica o status de um pagamento PIX
  */
-export async function verificarStatusPix(pixId: string): Promise<{ status: 'pendente' | 'pago' | 'expirado' | 'cancelado' }> {
+export async function verificarStatusPix(_pixId: string): Promise<{ status: 'pendente' | 'pago' | 'expirado' | 'cancelado' }> {
   try {
     // Em ambiente de produção, esta seria uma chamada real à API
     // const response = await fetch(`${BASE_URL}/pix/status/${pixId}`, {
