@@ -83,6 +83,7 @@ export async function criarPixQRCode(params: CriarPixQRCodeParams): Promise<PixQ
 export async function verificarStatusPix(
   // O underscore indica que este parâmetro não é usado na implementação atual,
   // mas seria usado na implementação de produção
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _pixId: string
 ): Promise<{ status: 'pendente' | 'pago' | 'expirado' | 'cancelado' }> {
   try {
