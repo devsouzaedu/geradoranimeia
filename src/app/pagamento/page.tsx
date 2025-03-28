@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { criarPixQRCode, verificarStatusPix, processarPagamentoCartao } from "../lib/abacatepay";
@@ -46,7 +46,8 @@ export default function Pagamento() {
   };
   
   // Verificar status do pagamento PIX
-  const verificarPagamentoPix = async () => {
+  // Usando useCallback para evitar recriação da função a cada renderização
+  const verificarPagamentoPix = useCallback(async () => {
     if (!pixId || statusPagamento !== "pendente") return;
     
     try {
@@ -62,7 +63,7 @@ export default function Pagamento() {
     } catch (error) {
       console.error("Erro ao verificar status do PIX:", error);
     }
-  };
+  }, [pixId, statusPagamento, router]);
   
   // Processar pagamento com cartão
   const processarCartao = async (evento: React.FormEvent) => {
@@ -109,7 +110,7 @@ export default function Pagamento() {
       const intervalo = setInterval(verificarPagamentoPix, 5000);
       return () => clearInterval(intervalo);
     }
-  }, [pixId, statusPagamento, verificarPagamentoPix, router]);
+  }, [pixId, statusPagamento, verificarPagamentoPix]);
   
   return (
     <div className="relative min-h-screen flex flex-col items-center p-8">

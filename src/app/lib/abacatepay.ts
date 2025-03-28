@@ -80,10 +80,14 @@ export async function criarPixQRCode(params: CriarPixQRCodeParams): Promise<PixQ
 /**
  * Verifica o status de um pagamento PIX
  */
-export async function verificarStatusPix(_pixId: string): Promise<{ status: 'pendente' | 'pago' | 'expirado' | 'cancelado' }> {
+export async function verificarStatusPix(
+  // O underscore indica que este parâmetro não é usado na implementação atual,
+  // mas seria usado na implementação de produção
+  _pixId: string
+): Promise<{ status: 'pendente' | 'pago' | 'expirado' | 'cancelado' }> {
   try {
     // Em ambiente de produção, esta seria uma chamada real à API
-    // const response = await fetch(`${BASE_URL}/pix/status/${pixId}`, {
+    // const response = await fetch(`${BASE_URL}/pix/status/${_pixId}`, {
     //   method: 'GET',
     //   headers: {
     //     'Authorization': `Bearer ${API_KEY}`
